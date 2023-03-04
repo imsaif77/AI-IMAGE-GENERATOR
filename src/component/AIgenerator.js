@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import AIService from '../services/ai.service';
 
+
+
 const AIgenerator = () => {
 
     const [image,setImage] = useState(null)
