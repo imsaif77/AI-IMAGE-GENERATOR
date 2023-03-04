@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API_URL = 'https://api.openai.com/v1/images/generations'
-const apiKey = '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'
+const apiKey = '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'
 
 const AIService = {
 
