@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import AIgenerator from './component/AIgenerator';
+import PinataUpload from './component/mint';
 
 function App() {
 
@@ -11,6 +12,8 @@ function App() {
     <div className="App">
 
       <AIgenerator/>
+
+      {/* <PinataUpload /> */}
 
         </div>
   );
