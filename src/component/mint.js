@@ -4,12 +4,13 @@ import { ethers } from 'ethers';
 import { JsonRpcProvider } from 'ethers/providers';
 
 import NFT_ABI from '../ABI.json'
+import Dashboard from './Dashboard';
 
 
 const provider = new JsonRpcProvider('https://matic-mumbai.chainstacklabs.com');
 // provider = new ethers.providers.PolygonProvider('mumbai');
 
-const contractAddress = '0x7dd694b06b69fcb871e3419d84d9a7f6417214c7';
+const contractAddress = '0xb89b78b9fA7610924F403C8CA42dbB2d4e2F54b3';
 
  var signer = new ethers.Wallet('e0adfcd5d9c09523479a64d571c06924e4e7401538e65ccf8af5259b577f7280', provider);
 
@@ -40,7 +41,8 @@ const PinataUpload = () => {
   async function safeMint(uri) {
     // Call the safeMint function on your contract
 
-    const tx = await nftContract.safeMint(uri);
+    const tx = await nftContract.mintToken(`https://gateway.pinata.cloud/ipfs/${uri}`);
+    console.log(tx)
     // Wait for the transaction to be mined
     const receipt = await tx.wait();
     console.log("Transaction receipt:", receipt);
@@ -79,18 +81,18 @@ const PinataUpload = () => {
     }
   };
 
-  async function getnfttoken(){
+  // async function getnfttoken(){
 
-    const tx = await nftContract.tokenURI(1);
-    const img = `https://gateway.pinata.cloud/ipfs/${tx}`
-    setImage(img)
+  //   const tx = await nftContract.tokenURI(2);
+  //   const img = `https://gateway.pinata.cloud/ipfs/${tx}`
+  //   setImage(img)
 
 
-  }
+  // }
 
-  useEffect(()=>{
-    getnfttoken()
-  },[])
+  // useEffect(()=>{
+  //   getnfttoken()
+  // },[])
 
 
   return (
@@ -98,7 +100,7 @@ const PinataUpload = () => {
 
     <div>
 
-<img src={image}  />
+    <Dashboard nftContract={nftContract}/>
 
       <h2>Upload an image to Pinata</h2>
       <form onSubmit={handleSubmit}>
